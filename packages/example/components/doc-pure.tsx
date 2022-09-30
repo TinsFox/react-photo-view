@@ -3,7 +3,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { ImageList, Image } from './doc-components';
 import photo5 from '../images/5.jpg';
 
-export default function DocDemo() {
+export default function DocPure() {
   return (
     <PhotoProvider maskOpacity={0.5} bannerVisible={false}>
       <ImageList>

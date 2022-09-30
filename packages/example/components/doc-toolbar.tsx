@@ -21,7 +21,7 @@ const FullScreenIcon = (props: React.HTMLAttributes<any>) => {
   );
 };
 
-export default function DocDemo() {
+export default function DocToolbar() {
   const [images, setImages] = React.useState(photoImages);
 
   function toggleFullScreen() {
@@ -36,7 +36,6 @@ export default function DocDemo() {
   }
   return (
     <PhotoProvider
-      // @ts-ignore
       toolbarRender={({ rotate, onRotate, onScale, scale, index }) => {
         return (
           <>

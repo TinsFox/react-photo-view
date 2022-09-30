@@ -4,7 +4,7 @@ import { ImageList } from './doc-components';
 import photo3 from '../images/3.jpg';
 import photo4 from '../images/4.jpg';
 
-export default function DocDemo() {
+export default function DocMotion() {
   return (
     <PhotoProvider
       speed={() => 800}

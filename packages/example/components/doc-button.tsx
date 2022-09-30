@@ -3,7 +3,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { Button, ImageList } from './doc-components';
 import photo4 from '../images/4.jpg';
 
-export default function DocDemo() {
+export default function DocButton() {
   return (
     <PhotoProvider>
       <ImageList>

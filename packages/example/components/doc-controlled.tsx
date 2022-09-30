@@ -2,7 +2,7 @@ import React from 'react';
 import { PhotoSlider } from 'react-photo-view';
 import { Button, ImageList, Overlay, photoImages } from './doc-components';
 
-export default function DocDemo() {
+export default function DocControlled() {
   const [visible, setVisible] = React.useState(false);
   const [index, setIndex] = React.useState(0);
 
@@ -30,7 +30,7 @@ export default function DocDemo() {
           <Overlay>
             <div className="mb-1">index: {index}</div>
             <div className="flex">
-              <Button onClick={() => onIndexChange(0)}>setIndex(0)</Button>
+              <Button onClick={() => onIndexChange(0)}>setIndex1(0)</Button>
               <Button onClick={() => onIndexChange(4)}>setIndex(4)</Button>
             </div>
           </Overlay>

@@ -2,7 +2,7 @@ import React from 'react';
 import { PhotoView, PhotoProvider } from 'react-photo-view';
 import { ImageList, photoImages, Image } from './doc-components';
 
-export default function DocDemo() {
+export default function DocPart() {
   return (
     <PhotoProvider>
       <ImageList>

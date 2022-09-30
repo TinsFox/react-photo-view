@@ -4,11 +4,11 @@ import { Button, ImageList } from './doc-components';
 import { EosIconsBubbleLoading } from '../icons/EosIconsBubbleLoading';
 import defaultPhoto from '../images/default-photo.svg';
 
-export default function DocDemo() {
+export default function DocBroken() {
   return (
     <ImageList>
       <PhotoProvider
-        loadingElement={<EosIconsBubbleLoading className="text-white w-8 h-8" />}
+        loadingElement={<EosIconsBubbleLoading className="w-8 h-8 text-white" />}
         brokenElement={<img className="w-32 h-32" src={defaultPhoto.src} alt="" />}
       >
         <PhotoView src="/error.png">

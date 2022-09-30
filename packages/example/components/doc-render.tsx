@@ -4,7 +4,7 @@ import { Button, ImageList } from './doc-components';
 
 const elementSize = 400;
 
-export default function DocDemo() {
+export default function DocRender() {
   return (
     <PhotoProvider maskOpacity={0.5} loop={false}>
       <ImageList>
@@ -24,11 +24,11 @@ export default function DocDemo() {
                   style={{ transform: `scale(${childScale})`, width: elementSize, transformOrigin: '0 0', padding: 20 }}
                 >
                   <div className="mb-2">Hello world</div>
-                  <Button className="mb-2 w-full" primary>
+                  <Button className="w-full mb-2" primary>
                     button
                   </Button>
                   <input
-                    className="border border-gray-300 h-8 p-2"
+                    className="h-8 p-2 border border-gray-300"
                     placeholder="Input"
                     onMouseDown={(e) => e.stopPropagation()}
                   />
