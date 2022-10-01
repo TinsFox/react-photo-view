@@ -11,13 +11,12 @@ import useEventListener from './hooks/useEventListener';
 import useAnimationVisible from './hooks/useAnimationVisible';
 import useMethods from './hooks/useMethods';
 import SlidePortal from './components/SlidePortal';
-import CloseIcon from './components/CloseIcon';
-import ArrowLeft from './components/ArrowLeft';
-import ArrowRight from './components/ArrowRight';
+import ArrowLeft from './components/Icon/arrow-right-line';
+import ArrowRight from './components/Icon/arrow-right-line';
 import PreventScroll from './components/PreventScroll';
 import PhotoBox from './PhotoBox';
 import './PhotoSlider.less';
-
+import DefaultToolBar from './components/defaultToolBar';
 export interface IPhotoSliderProps extends PhotoProviderBase {
   // 图片列表
   images: DataType[];
@@ -379,8 +378,7 @@ export default function PhotoSlider(props: IPhotoSliderProps) {
             {index + 1} / {imageLength}
           </div>
           <div className="PhotoView-Slider__BannerRight">
-            {toolbarRender && overlayParams && toolbarRender(overlayParams)}
-            <CloseIcon className="PhotoView-Slider__toolbarIcon" onClick={close} />
+            {toolbarRender && overlayParams ? toolbarRender(overlayParams) : <DefaultToolBar onClose={onClose} />}
           </div>
         </div>
       )}
