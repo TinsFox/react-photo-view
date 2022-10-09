@@ -6,14 +6,18 @@
   "license": "Apache-2.0",
   "author": "MinJieLiu",
   "scripts": {
-    "build": "pnpm -C ./packages/example build",
+    "dev": "concurrently 'pnpm:dev:*'",
+    "dev:doc": "pnpm --filter ./packages/example dev",
+    "dev:core": "pnpm --filter ./packages/react-photo-view dev",
+    "dev:types": "pnpm --filter ./packages/react-photo-view dev:types",
+    "build": "pnpm --filter ./packages/example build",
     "lint": "npm run lint:js && npm run lint:prettier",
     "lint-staged": "lint-staged",
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty packages/ --fix",
     "lint:prettier": "prettier --check \"**/*\" --end-of-line auto --write",
     "lint:style": "stylelint --fix \"**/*.less\" --syntax less",
     "prepare": "husky install",
-    "start": "pnpm -C ./packages/example start"
+    "start": "pnpm --filter ./packages/example start"
   },
   "lint-staged": {
     "**/*.less": "stylelint --syntax less",

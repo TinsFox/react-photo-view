@@ -2,23 +2,22 @@
 title: Getting Started
 ---
 
-import Callout from 'nextra-theme-docs/callout';
-
-import DocBasic from '../../components/doc-basic';
-import DocMotion from '../../components/doc-motion';
-import DocCover from '../../components/doc-cover';
-import DocToolbar from '../../components/doc-toolbar';
-import DocRead from '../../components/doc-read';
-import DocButton from '../../components/doc-button';
-import DocLoop from '../../components/doc-loop';
-import DocBackdrop from '../../components/doc-backdrop';
-import DocPure from '../../components/doc-pure';
-import DocClose from '../../components/doc-close';
-import DocBroken from '../../components/doc-broken';
-import DocControlled from '../../components/doc-controlled';
-import DocPart from '../../components/doc-part';
-import DocOverlay from '../../components/doc-overlay';
-import DocRender from '../../components/doc-render';
+import Callout from "nextra-theme-docs/callout";
+import DocBasic from "../../components/doc-basic";
+import DocMotion from "../../components/doc-motion";
+import DocCover from "../../components/doc-cover";
+import DocToolbar from "../../components/doc-toolbar";
+import DocRead from "../../components/doc-read";
+import DocButton from "../../components/doc-button";
+import DocLoop from "../../components/doc-loop";
+import DocBackdrop from "../../components/doc-backdrop";
+import DocPure from "../../components/doc-pure";
+import DocClose from "../../components/doc-close";
+import DocBroken from "../../components/doc-broken";
+import DocControlled from "../../components/doc-controlled";
+import DocPart from "../../components/doc-part";
+import DocOverlay from "../../components/doc-overlay";
+import DocRender from "../../components/doc-render";
 
 ## 安装
 
@@ -27,33 +26,33 @@ import DocRender from '../../components/doc-render';
 pnpm:
 
 ```plaintext
-pnpm i react-photo-view
+pnpm i @acr/react-photo-view
 ```
 
 yarn:
 
 ```plaintext
-yarn add react-photo-view
+yarn add @acr/react-photo-view
 ```
 
 或者用 npm:
 
 ```plaintext
-npm install react-photo-view
+npm install @acr/react-photo-view
 ```
 
-## 快速开始
+## 引入
 
 在应用入口处引入 `CSS` 文件
 
-```js
-import 'react-photo-view/dist/style.css';
+```tsx
+import "@acr/react-photo-view/dist/style.css";
 ```
 
 在需要使用的地方引入 `PhotoProvider` 和 `PhotoView` 组件，基本用法：
 
 ```jsx
-import { PhotoProvider, PhotoView } from 'react-photo-view';
+import { PhotoProvider, PhotoView } from "@acr/react-photo-view";
 
 export default function MyComponent() {
   return (
@@ -77,21 +76,26 @@ export default function MyComponent() {
 如果需要整个页面的图片形成一组进行预览，则可以在页面的入口处嵌套 `PhotoProvider`。
 
 <Callout emoji="💡">
-  注意： `react-photo-view` 一次只在 `DOM` 中加载保留三张图片，因为每张图片都是一个合成层，这会消耗相当多的内存。
+  注意： `@acr/react-photo-view` 一次只在 `DOM`
+  中加载保留三张图片，因为每张图片都是一个合成层，这会消耗相当多的内存。
 </Callout>
 
 ## 过渡动画
 
 ### 过渡效果
 
-`react-photo-view` 为保证更流畅体验，使用了相当多的 `CSS3` 动画，在滚动时使用弹簧动画贴近原生滚动效果。`CSS3` 动画默认持续时间为 `400ms`，使用 `cubic-bezier(0.25, 0.8, 0.25, 1)` 动画函数。
+`@acr/react-photo-view` 为保证更流畅体验，使用了相当多的 `CSS3` 动画，在滚动时使用弹簧动画贴近原生滚动效果。`CSS3` 动画默认持续时间为 `400ms`，使用 `cubic-bezier(0.25, 0.8, 0.25, 1)` 动画函数。
 
 可通过设置 `speed` 、`easing` 来自定义动画时间或函数：
 
-```jsx
+```tsx
 <PhotoProvider
   speed={() => 800}
-  easing={(type) => (type === 2 ? 'cubic-bezier(0.36, 0, 0.66, -0.56)' : 'cubic-bezier(0.34, 1.56, 0.64, 1)')}
+  easing={(type) =>
+    type === 2
+      ? "cubic-bezier(0.36, 0, 0.66, -0.56)"
+      : "cubic-bezier(0.34, 1.56, 0.64, 1)"
+  }
 />
 ```
 
@@ -103,7 +107,9 @@ export default function MyComponent() {
 
 <DocMotion />
 
-<Callout emoji="💡">若子节点不是 `img` 节点将额外添加 `opacity` 淡入淡出效果。</Callout>
+<Callout emoji="💡">
+  若子节点不是 `img` 节点将额外添加 `opacity` 淡入淡出效果。
+</Callout>
 
 ### 裁切缩略图
 
@@ -111,7 +117,7 @@ export default function MyComponent() {
 
 ```jsx
 <PhotoView src={imageURL}>
-  <img src={imageURL} style={{ objectFit: 'cover' }} alt="" />
+  <img src={imageURL} style={{ objectFit: "cover" }} alt="" />
 </PhotoView>
 ```
 
@@ -119,7 +125,7 @@ export default function MyComponent() {
 
 ## 自定义工具栏
 
-在 `<PhotoProvider />` 上添加参数 `toolbarRender` 函数，该函数须返回一个 `ReactNode` 节点。
+在 `<PhotoProvider />` 上添加参数 `toolbar` 函数，该函数须返回一个 `ReactNode` 节点。
 
 ### 放大/缩小
 
@@ -127,11 +133,17 @@ export default function MyComponent() {
 
 ```jsx
 <PhotoProvider
-  toolbarRender={({ onScale, scale }) => {
+  toolbar={({ onScale, scale }) => {
     return (
       <>
-        <svg className="PhotoView-Slider__toolbarIcon" onClick={() => onScale(scale + 1)} />
-        <svg className="PhotoView-Slider__toolbarIcon" onClick={() => onScale(scale - 1)} />
+        <svg
+          className="PhotoView-Slider__toolbarIcon"
+          onClick={() => onScale(scale + 1)}
+        />
+        <svg
+          className="PhotoView-Slider__toolbarIcon"
+          onClick={() => onScale(scale - 1)}
+        />
       </>
     );
   }}
@@ -140,17 +152,22 @@ export default function MyComponent() {
 
 ### 旋转
 
-`react-photo-view` 默认不内置旋转控制按钮，但提供了旋转 `API`。我们只需简单添加一个 `SVG` 图片即可实现旋转效果：
+`@acr/react-photo-view` 默认不内置旋转控制按钮，但提供了旋转 `API`。我们只需简单添加一个 `SVG` 图片即可实现旋转效果：
 
 ```jsx
 <PhotoProvider
-  toolbarRender={({ rotate, onRotate }) => {
-    return <svg className="PhotoView-Slider__toolbarIcon" onClick={() => onRotate(rotate + 90)} />;
+  toolbar={({ rotate, onRotate }) => {
+    return (
+      <svg
+        className="PhotoView-Slider__toolbarIcon"
+        onClick={() => onRotate(rotate + 90)}
+      />
+    );
   }}
 />
 ```
 
-`toolbarRender` 函数提供的参数有：
+`toolbar` 函数提供的参数有：
 
 - `images` - 图片列表 `DataType[]`
 - `index` - 当前索引 `number`
@@ -267,7 +284,13 @@ function MyComponent() {
 
         return (
           <div {...attrs}>
-            <div style={{ transform: `scale(${childScale})`, width: elementSize, transformOrigin: '0 0' }}>
+            <div
+              style={{
+                transform: `scale(${childScale})`,
+                width: elementSize,
+                transformOrigin: "0 0",
+              }}
+            >
               <div>Hello world</div>
               <Button>button</Button>
               <input onMouseDown={(e) => e.stopPropagation()} />
@@ -283,7 +306,8 @@ function MyComponent() {
 ```
 
 <Callout emoji="💡">
-  注意：画廊在缩放之后，先会用 `scale` 进行缩放，在动画结束后则调整为当前 `scale` 所对应的宽高，并重置 `scale` 为 `1`。
+  注意：画廊在缩放之后，先会用 `scale` 进行缩放，在动画结束后则调整为当前
+  `scale` 所对应的宽高，并重置 `scale` 为 `1`。
 </Callout>
 
 <DocRender />
@@ -292,7 +316,7 @@ function MyComponent() {
 
 ### 自定义描述
 
-在 `<PhotoProvider />` 上添加 `overlayRender` 函数，可以实现自定义节点，**函数参数返回值与 `toolbarRender` 一致**。
+在 `<PhotoProvider />` 上添加 `overlayRender` 函数，可以实现自定义节点，**函数参数返回值与 `toolbar` 一致**。
 
 <DocOverlay />
 

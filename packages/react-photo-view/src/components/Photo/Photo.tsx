@@ -1,8 +1,8 @@
-import React from 'react';
-import Spinner from './components/Spinner';
-import useMountedRef from './hooks/useMountedRef';
-import type { BrokenElementParams } from './types';
-import './Photo.less';
+import React from "react";
+import Spinner from "../Spinner/Spinner";
+import useMountedRef from "../hooks/useMountedRef";
+import type { BrokenElementParams } from "../../types";
+import "./Photo.less";
 
 export interface IPhotoLoadedParams {
   loaded?: boolean;
@@ -17,7 +17,9 @@ export interface IPhotoProps extends React.HTMLAttributes<HTMLElement> {
   broken: boolean;
   onPhotoLoad: (params: IPhotoLoadedParams) => void;
   loadingElement?: JSX.Element;
-  brokenElement?: JSX.Element | ((photoProps: BrokenElementParams) => JSX.Element);
+  brokenElement?:
+    | JSX.Element
+    | ((photoProps: BrokenElementParams) => JSX.Element);
 }
 
 export default function Photo({
@@ -55,7 +57,7 @@ export default function Photo({
     return (
       <>
         <img
-          className={`PhotoView__Photo${className ? ` ${className}` : ''}`}
+          className={`PhotoView__Photo${className ? ` ${className}` : ""}`}
           src={src}
           onLoad={handleImageLoaded}
           onError={handleImageBroken}
@@ -63,7 +65,9 @@ export default function Photo({
           {...restProps}
         />
         {!loaded &&
-          (<span className="PhotoView__icon">{loadingElement}</span> || <Spinner className="PhotoView__icon" />)}
+          (<span className="PhotoView__icon">{loadingElement}</span> || (
+            <Spinner className="PhotoView__icon" />
+          ))}
       </>
     );
   }
@@ -71,7 +75,9 @@ export default function Photo({
   if (brokenElement) {
     return (
       <span className="PhotoView__icon">
-        {typeof brokenElement === 'function' ? brokenElement({ src }) : brokenElement}
+        {typeof brokenElement === "function"
+          ? brokenElement({ src })
+          : brokenElement}
       </span>
     );
   }

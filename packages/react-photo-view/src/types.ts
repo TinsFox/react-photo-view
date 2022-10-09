@@ -1,4 +1,4 @@
-import type React from 'react';
+import type React from "react";
 
 /**资源数据类型*/
 export interface DataType {
@@ -80,7 +80,7 @@ export interface PhotoProviderBase {
   /**
    * 自定义渲染工具栏
    */
-  toolbarRender?: (overlayProps: OverlayRenderProps) => React.ReactNode;
+  toolbar?: (overlayProps: OverlayRenderProps) => React.ReactNode;
   className?: string;
   maskClassName?: string;
   photoWrapClassName?: string;
@@ -92,7 +92,9 @@ export interface PhotoProviderBase {
   /**
    * 自定义加载失败渲染
    */
-  brokenElement?: JSX.Element | ((photoProps: BrokenElementParams) => JSX.Element);
+  brokenElement?:
+    | JSX.Element
+    | ((photoProps: BrokenElementParams) => JSX.Element);
   /**
    * @defaultValue document.body
    */
@@ -173,7 +175,12 @@ export interface ExposedProperties {
   onRotate?: (rotate: number) => void;
 }
 
-export type ReachMoveFunction = (reachPosition: ReachType, clientX: number, clientY: number, scale?: number) => void;
+export type ReachMoveFunction = (
+  reachPosition: ReachType,
+  clientX: number,
+  clientY: number,
+  scale?: number
+) => void;
 
 export type ReachFunction = (clientX: number, clientY: number) => void;
 
@@ -192,8 +199,8 @@ export type CloseEdgeType =
  * 边缘触发状态
  */
 export type ReachType =
-  | 'x' // x 轴
-  | 'y' // y 轴
+  | "x" // x 轴
+  | "y" // y 轴
   | undefined; // 未触发
 
 /**
@@ -215,7 +222,7 @@ export type OriginRectType = {
   // height
   H: number;
   // object-fit
-  FIT: 'contain' | 'cover' | 'fill' | undefined;
+  FIT: "contain" | "cover" | "fill" | undefined;
 };
 
 /**

@@ -1,13 +1,13 @@
-import React, { useRef } from 'react';
-import isTouchDevice from './utils/isTouchDevice';
-import getMultipleTouchPosition from './utils/getMultipleTouchPosition';
-import getPositionOnMoveOrScale from './utils/getPositionOnMoveOrScale';
-import { getReachType, computePositionEdge } from './utils/edgeHandle';
-import getRotateSize from './utils/getRotateSize';
-import { limitScale } from './utils/limitTarget';
-import getSuitableImageSize from './utils/getSuitableImageSize';
-import useIsomorphicLayoutEffect from './hooks/useIsomorphicLayoutEffect';
-import { minStartTouchOffset, scaleBuffer } from './variables';
+import React, { useRef } from "react";
+import isTouchDevice from "../../utils/isTouchDevice";
+import getMultipleTouchPosition from "../../utils/getMultipleTouchPosition";
+import getPositionOnMoveOrScale from "../../utils/getPositionOnMoveOrScale";
+import { getReachType, computePositionEdge } from "../../utils/edgeHandle";
+import getRotateSize from "../../utils/getRotateSize";
+import { limitScale } from "../../utils/limitTarget";
+import getSuitableImageSize from "../../utils/getSuitableImageSize";
+import useIsomorphicLayoutEffect from "../hooks/useIsomorphicLayoutEffect";
+import { minStartTouchOffset, scaleBuffer } from "../../variables";
 import type {
   DataType,
   ReachMoveFunction,
@@ -15,19 +15,19 @@ import type {
   PhotoTapFunction,
   BrokenElementParams,
   ExposedProperties,
-} from './types';
-import type { ReachType, TouchStartType } from './types';
-import useSetState from './hooks/useSetState';
-import useMethods from './hooks/useMethods';
-import useDebounceCallback from './hooks/useDebounceCallback';
-import useEventListener from './hooks/useEventListener';
-import useContinuousTap from './hooks/useContinuousTap';
-import useScrollPosition from './hooks/useScrollPosition';
-import useAnimationPosition from './hooks/useAnimationPosition';
-import useMountedRef from './hooks/useMountedRef';
-import type { IPhotoLoadedParams } from './Photo';
-import Photo from './Photo';
-import './PhotoBox.less';
+} from "../../types";
+import type { ReachType, TouchStartType } from "../../types";
+import useSetState from "../hooks/useSetState";
+import useMethods from "../hooks/useMethods";
+import useDebounceCallback from "../hooks/useDebounceCallback";
+import useEventListener from "../hooks/useEventListener";
+import useContinuousTap from "../hooks/useContinuousTap";
+import useScrollPosition from "../hooks/useScrollPosition";
+import useAnimationPosition from "../hooks/useAnimationPosition";
+import useMountedRef from "../hooks/useMountedRef";
+import type { IPhotoLoadedParams } from "../Photo/Photo";
+import Photo from "../Photo/Photo";
+import "./PhotoBox.less";
 
 export interface PhotoBoxProps {
   // 图片信息
@@ -47,7 +47,9 @@ export interface PhotoBoxProps {
   // 自定义 loading
   loadingElement?: JSX.Element;
   // 加载失败 Element
-  brokenElement?: JSX.Element | ((photoProps: BrokenElementParams) => JSX.Element);
+  brokenElement?:
+    | JSX.Element
+    | ((photoProps: BrokenElementParams) => JSX.Element);
 
   // Photo 点击事件
   onPhotoTap: PhotoTapFunction;
@@ -121,7 +123,13 @@ const initialState = {
 };
 
 export default function PhotoBox({
-  item: { src, render, width: customWidth = 0, height: customHeight = 0, originRef },
+  item: {
+    src,
+    render,
+    width: customWidth = 0,
+    height: customHeight = 0,
+    originRef,
+  },
   visible,
   speed,
   easing,
@@ -175,7 +183,10 @@ export default function PhotoBox({
     onRotate(current: number) {
       if (rotate !== current) {
         expose({ rotate: current });
-        updateState({ rotate: current, ...getSuitableImageSize(naturalWidth, naturalHeight, current) });
+        updateState({
+          rotate: current,
+          ...getSuitableImageSize(naturalWidth, naturalHeight, current),
+        });
       }
     },
   });
@@ -186,17 +197,34 @@ export default function PhotoBox({
       expose({ scale: current });
       updateState({
         scale: current,
-        ...getPositionOnMoveOrScale(x, y, width, height, scale, current, clientX, clientY),
+        ...getPositionOnMoveOrScale(
+          x,
+          y,
+          width,
+          height,
+          scale,
+          current,
+          clientX,
+          clientY
+        ),
         ...(current <= 1 && { x: 0, y: 0 }),
       });
     }
   }
 
   const handleMove = useDebounceCallback(
-    (nextClientX: number, nextClientY: number, currentTouchLength: number = 0) => {
+    (
+      nextClientX: number,
+      nextClientY: number,
+      currentTouchLength: number = 0
+    ) => {
       if ((touched || maskTouched) && isActive) {
         // 通过旋转调换宽高
-        const [currentWidth, currentHeight] = getRotateSize(rotate, width, height);
+        const [currentWidth, currentHeight] = getRotateSize(
+          rotate,
+          width,
+          height
+        );
         // 单指最小缩放下，以初始移动距离来判断意图
         if (currentTouchLength === 0 && initialTouchRef.current === 0) {
           const isStillX = Math.abs(nextClientX - CX) <= minStartTouchOffset;
@@ -217,10 +245,25 @@ export default function PhotoBox({
         let currentReach: ReachType = undefined;
         if (currentTouchLength === 0) {
           // 边缘超出状态
-          const [horizontalCloseEdge] = computePositionEdge(offsetX + lastX, scale, currentWidth, innerWidth);
-          const [verticalCloseEdge] = computePositionEdge(offsetY + lastY, scale, currentHeight, innerHeight);
+          const [horizontalCloseEdge] = computePositionEdge(
+            offsetX + lastX,
+            scale,
+            currentWidth,
+            innerWidth
+          );
+          const [verticalCloseEdge] = computePositionEdge(
+            offsetY + lastY,
+            scale,
+            currentHeight,
+            innerHeight
+          );
           // 边缘触发检测
-          currentReach = getReachType(initialTouchRef.current, horizontalCloseEdge, verticalCloseEdge, reach);
+          currentReach = getReachType(
+            initialTouchRef.current,
+            horizontalCloseEdge,
+            verticalCloseEdge,
+            reach
+          );
 
           // 接触边缘
           if (currentReach !== undefined) {
@@ -228,15 +271,15 @@ export default function PhotoBox({
           }
         }
         // 横向边缘触发、背景触发禁用当前滑动
-        if (currentReach === 'x' || maskTouched) {
-          updateState({ reach: 'x' });
+        if (currentReach === "x" || maskTouched) {
+          updateState({ reach: "x" });
           return;
         }
         // 目标倍数
         const toScale = limitScale(
           scale + ((currentTouchLength - touchLength) / 100 / 2) * scale,
           naturalWidth / width,
-          scaleBuffer,
+          scaleBuffer
         );
         // 导出变量
         expose({ scale: toScale });
@@ -244,13 +287,24 @@ export default function PhotoBox({
           touchLength: currentTouchLength,
           reach: currentReach,
           scale: toScale,
-          ...getPositionOnMoveOrScale(x, y, width, height, scale, toScale, nextClientX, nextClientY, offsetX, offsetY),
+          ...getPositionOnMoveOrScale(
+            x,
+            y,
+            width,
+            height,
+            scale,
+            toScale,
+            nextClientX,
+            nextClientY,
+            offsetX,
+            offsetY
+          ),
         });
       }
     },
     {
       maxWait: 8,
-    },
+    }
   );
 
   function updateRaf(position: { x?: number; y?: number }) {
@@ -273,16 +327,19 @@ export default function PhotoBox({
         updateState({ scale: nextScale });
       }
       return !touched && mounted.current;
-    },
+    }
   );
 
-  const handlePhotoTap = useContinuousTap(onPhotoTap, (currentClientX: number, currentClientY: number) => {
-    if (!reach) {
-      // 若图片足够大，则放大适应的倍数
-      const endScale = scale !== 1 ? 1 : Math.max(2, naturalWidth / width);
-      onScale(endScale, currentClientX, currentClientY);
+  const handlePhotoTap = useContinuousTap(
+    onPhotoTap,
+    (currentClientX: number, currentClientY: number) => {
+      if (!reach) {
+        // 若图片足够大，则放大适应的倍数
+        const endScale = scale !== 1 ? 1 : Math.max(2, naturalWidth / width);
+        onScale(endScale, currentClientX, currentClientY);
+      }
     }
-  });
+  );
 
   function handleUp(nextClientX: number, nextClientY: number) {
     // 重置响应状态
@@ -297,7 +354,19 @@ export default function PhotoBox({
       });
       const safeScale = limitScale(scale, naturalWidth / width);
       // Go
-      slideToPosition(x, y, lastX, lastY, width, height, scale, safeScale, lastScale, rotate, touchTime);
+      slideToPosition(
+        x,
+        y,
+        lastX,
+        lastY,
+        width,
+        height,
+        scale,
+        safeScale,
+        lastScale,
+        rotate,
+        touchTime
+      );
 
       onReachUp(nextClientX, nextClientY);
       // 触发 Tap 事件
@@ -313,41 +382,43 @@ export default function PhotoBox({
     }
   }
 
-  useEventListener(isTouchDevice ? undefined : 'mousemove', (e) => {
+  useEventListener(isTouchDevice ? undefined : "mousemove", (e) => {
     e.preventDefault();
     handleMove(e.clientX, e.clientY);
   });
-  useEventListener(isTouchDevice ? undefined : 'mouseup', (e) => {
+  useEventListener(isTouchDevice ? undefined : "mouseup", (e) => {
     handleUp(e.clientX, e.clientY);
   });
   useEventListener(
-    isTouchDevice ? 'touchmove' : undefined,
+    isTouchDevice ? "touchmove" : undefined,
     (e) => {
       e.preventDefault();
       const position = getMultipleTouchPosition(e);
       handleMove(...position);
     },
-    { passive: false },
+    { passive: false }
   );
   useEventListener(
-    isTouchDevice ? 'touchend' : undefined,
+    isTouchDevice ? "touchend" : undefined,
     ({ changedTouches }) => {
       const touch = changedTouches[0];
       handleUp(touch.clientX, touch.clientY);
     },
-    { passive: false },
+    { passive: false }
   );
   useEventListener(
-    'resize',
+    "resize",
     useDebounceCallback(
       () => {
         if (loaded && !touched) {
-          updateState(getSuitableImageSize(naturalWidth, naturalHeight, rotate));
+          updateState(
+            getSuitableImageSize(naturalWidth, naturalHeight, rotate)
+          );
           onPhotoResize();
         }
       },
-      { maxWait: 8 },
-    ),
+      { maxWait: 8 }
+    )
   );
 
   useIsomorphicLayoutEffect(() => {
@@ -359,11 +430,20 @@ export default function PhotoBox({
   function handlePhotoLoad(params: IPhotoLoadedParams) {
     updateState({
       ...params,
-      ...(params.loaded && getSuitableImageSize(params.naturalWidth || 0, params.naturalHeight || 0, rotate)),
+      ...(params.loaded &&
+        getSuitableImageSize(
+          params.naturalWidth || 0,
+          params.naturalHeight || 0,
+          rotate
+        )),
     });
   }
 
-  function handleStart(currentClientX: number, currentClientY: number, currentTouchLength: number = 0) {
+  function handleStart(
+    currentClientX: number,
+    currentClientY: number,
+    currentTouchLength: number = 0
+  ) {
     updateState({
       touched: true,
       CX: currentClientX,
@@ -381,7 +461,10 @@ export default function PhotoBox({
   function handleWheel(e: React.WheelEvent) {
     if (!reach) {
       // 限制最大倍数和最小倍数
-      const toScale = limitScale(scale - e.deltaY / 100 / 2, naturalWidth / width);
+      const toScale = limitScale(
+        scale - e.deltaY / 100 / 2,
+        naturalWidth / width
+      );
       updateState({ stopRaf: true });
       onScale(toScale, e.clientX, e.clientY);
     }
@@ -410,12 +493,30 @@ export default function PhotoBox({
   }
 
   // 计算位置
-  const [translateX, translateY, currentWidth, currentHeight, currentScale, opacity, easingMode, FIT] =
-    useAnimationPosition(visible, originRef, loaded, x, y, width, height, scale, speed, (isPause: boolean) =>
-      updateState({ pause: isPause }),
-    );
+  const [
+    translateX,
+    translateY,
+    currentWidth,
+    currentHeight,
+    currentScale,
+    opacity,
+    easingMode,
+    FIT,
+  ] = useAnimationPosition(
+    visible,
+    originRef,
+    loaded,
+    x,
+    y,
+    width,
+    height,
+    scale,
+    speed,
+    (isPause: boolean) => updateState({ pause: isPause })
+  );
   // 图片 objectFit 渐变时间
-  const transitionLayoutTime = easingMode < 4 ? speed / 2 : easingMode > 4 ? speed : 0;
+  const transitionLayoutTime =
+    easingMode < 4 ? speed / 2 : easingMode > 4 ? speed : 0;
   const transitionCSS = `transform ${speed}ms ${easing}`;
 
   const attrs = {
@@ -439,17 +540,23 @@ export default function PhotoBox({
 
   return (
     <div
-      className={`PhotoView__PhotoWrap${wrapClassName ? ` ${wrapClassName}` : ''}`}
+      className={`PhotoView__PhotoWrap${
+        wrapClassName ? ` ${wrapClassName}` : ""
+      }`}
       style={style}
       onMouseDown={!isTouchDevice && isActive ? handleMaskStart : undefined}
-      onTouchStart={isTouchDevice && isActive ? (e) => handleMaskStart(e.touches[0]) : undefined}
+      onTouchStart={
+        isTouchDevice && isActive
+          ? (e) => handleMaskStart(e.touches[0])
+          : undefined
+      }
     >
       <div
         className="PhotoView__PhotoBox"
         style={{
           transform: `matrix(${currentScale}, 0, 0, ${currentScale}, ${translateX}, ${translateY})`,
           transition: touched || pause ? undefined : transitionCSS,
-          willChange: isActive ? 'transform' : undefined,
+          willChange: isActive ? "transform" : undefined,
         }}
       >
         {src ? (

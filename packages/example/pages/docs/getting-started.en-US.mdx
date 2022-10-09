@@ -2,23 +2,23 @@
 title: Getting Started
 ---
 
-import Callout from 'nextra-theme-docs/callout';
+import Callout from "nextra-theme-docs/callout";
 
-import DocBasic from '../../components/doc-basic';
-import DocMotion from '../../components/doc-motion';
-import DocCover from '../../components/doc-cover';
-import DocToolbar from '../../components/doc-toolbar';
-import DocRead from '../../components/doc-read';
-import DocButton from '../../components/doc-button';
-import DocLoop from '../../components/doc-loop';
-import DocBackdrop from '../../components/doc-backdrop';
-import DocPure from '../../components/doc-pure';
-import DocClose from '../../components/doc-close';
-import DocBroken from '../../components/doc-broken';
-import DocControlled from '../../components/doc-controlled';
-import DocPart from '../../components/doc-part';
-import DocOverlay from '../../components/doc-overlay';
-import DocRender from '../../components/doc-render';
+import DocBasic from "../../components/doc-basic";
+import DocMotion from "../../components/doc-motion";
+import DocCover from "../../components/doc-cover";
+import DocToolbar from "../../components/doc-toolbar";
+import DocRead from "../../components/doc-read";
+import DocButton from "../../components/doc-button";
+import DocLoop from "../../components/doc-loop";
+import DocBackdrop from "../../components/doc-backdrop";
+import DocPure from "../../components/doc-pure";
+import DocClose from "../../components/doc-close";
+import DocBroken from "../../components/doc-broken";
+import DocControlled from "../../components/doc-controlled";
+import DocPart from "../../components/doc-part";
+import DocOverlay from "../../components/doc-overlay";
+import DocRender from "../../components/doc-render";
 
 ## Install
 
@@ -47,13 +47,13 @@ npm install @acr/react-photo-view
 Import the `CSS` file at the entry point of the application
 
 ```js
-import '@acr/react-photo-view/dist/style.css';
+import "@acr/react-photo-view/dist/style.css";
 ```
 
 Introduce `PhotoProvider` and `PhotoView` components where they need to be used, basic usage:
 
 ```jsx
-import { PhotoProvider, PhotoView } from '@acr/react-photo-view';
+import { PhotoProvider, PhotoView } from "@acr/react-photo-view";
 
 export default function MyComponent() {
   return (
@@ -77,8 +77,9 @@ With the `PhotoProvider` as the boundary, all the `PhotoView` images in it will 
 If you need the images of the entire page to form a group for preview, you can nest `PhotoProvider` at the entrance of the page.
 
 <Callout emoji="💡">
-  Note: `@acr/react-photo-view` only keeps three images loaded in the `DOM` at a time, since each image is a compositing
-  layer, which consumes quite a bit of memory.
+  Note: `@acr/react-photo-view` only keeps three images loaded in the `DOM` at a
+  time, since each image is a compositing layer, which consumes quite a bit of
+  memory.
 </Callout>
 
 ## Animation
@@ -92,7 +93,11 @@ You can customize the animation time or function by setting `speed` , `easing`:
 ```jsx
 <PhotoProvider
   speed={() => 800}
-  easing={(type) => (type === 2 ? 'cubic-bezier(0.36, 0, 0.66, -0.56)' : 'cubic-bezier(0.34, 1.56, 0.64, 1)')}
+  easing={(type) =>
+    type === 2
+      ? "cubic-bezier(0.36, 0, 0.66, -0.56)"
+      : "cubic-bezier(0.34, 1.56, 0.64, 1)"
+  }
 />
 ```
 
@@ -104,7 +109,10 @@ You can customize the animation time or function by setting `speed` , `easing`:
 
 <DocMotion />
 
-<Callout emoji="💡">If the child node is not an `img` node, an additional `opacity` fade effect will be added.</Callout>
+<Callout emoji="💡">
+  If the child node is not an `img` node, an additional `opacity` fade effect
+  will be added.
+</Callout>
 
 ### Crop Thumbnails
 
@@ -112,7 +120,7 @@ The `<PhotoView>` component automatically recognizes the child node type, and if
 
 ```jsx
 <PhotoView src={imageURL}>
-  <img src={imageURL} style={{ objectFit: 'cover' }} alt="" />
+  <img src={imageURL} style={{ objectFit: "cover" }} alt="" />
 </PhotoView>
 ```
 
@@ -120,7 +128,7 @@ The `<PhotoView>` component automatically recognizes the child node type, and if
 
 ## Custom toolbar
 
-Add parameter `toolbarRender` function to `<PhotoProvider>`, which must return a `ReactNode` node.
+Add parameter `toolbar` function to `<PhotoProvider>`, which must return a `ReactNode` node.
 
 ### Zoom in or zoom out
 
@@ -128,11 +136,17 @@ Add a `scale` control to achieve zoom in and out buttons:
 
 ```jsx
 <PhotoProvider
-  toolbarRender={({ onScale, scale }) => {
+  toolbar={({ onScale, scale }) => {
     return (
       <>
-        <svg className="PhotoView-Slider__toolbarIcon" onClick={() => onScale(scale + 1)} />
-        <svg className="PhotoView-Slider__toolbarIcon" onClick={() => onScale(scale - 1)} />
+        <svg
+          className="PhotoView-Slider__toolbarIcon"
+          onClick={() => onScale(scale + 1)}
+        />
+        <svg
+          className="PhotoView-Slider__toolbarIcon"
+          onClick={() => onScale(scale - 1)}
+        />
       </>
     );
   }}
@@ -145,13 +159,18 @@ Add a `scale` control to achieve zoom in and out buttons:
 
 ```jsx
 <PhotoProvider
-  toolbarRender={({ rotate, onRotate }) => {
-    return <svg className="PhotoView-Slider__toolbarIcon" onClick={() => onRotate(rotate + 90)} />;
+  toolbar={({ rotate, onRotate }) => {
+    return (
+      <svg
+        className="PhotoView-Slider__toolbarIcon"
+        onClick={() => onRotate(rotate + 90)}
+      />
+    );
   }}
 />
 ```
 
-The parameters provided by the `toolbarRender` function are:
+The parameters provided by the `toolbar` function are:
 
 - `images` - list of images `DataType[]`
 - `index` - the current index `number`
@@ -268,7 +287,13 @@ function MyComponent() {
 
         return (
           <div {...attrs}>
-            <div style={{ transform: `scale(${childScale})`, width: elementSize, transformOrigin: '0 0' }}>
+            <div
+              style={{
+                transform: `scale(${childScale})`,
+                width: elementSize,
+                transformOrigin: "0 0",
+              }}
+            >
               <div>Hello world</div>
               <Button>button</Button>
               <input onMouseDown={(e) => e.stopPropagation()} />
@@ -284,8 +309,9 @@ function MyComponent() {
 ```
 
 <Callout emoji="💡">
-  Note: After the gallery is zoomed, it will first be scaled with `scale`, and after the animation is over, it will be
-  adjusted to the width and height corresponding to the current `scale`, and the `scale` will be reset to `1`.
+  Note: After the gallery is zoomed, it will first be scaled with `scale`, and
+  after the animation is over, it will be adjusted to the width and height
+  corresponding to the current `scale`, and the `scale` will be reset to `1`.
 </Callout>
 
 <DocRender />
@@ -294,7 +320,7 @@ function MyComponent() {
 
 ### Custom description
 
-Add the `overlayRender` function to `<PhotoProvider>` to implement custom nodes. **The return value of the function parameter is the same as that of `toolbarRender`**.
+Add the `overlayRender` function to `<PhotoProvider>` to implement custom nodes. **The return value of the function parameter is the same as that of `toolbar`**.
 
 <DocOverlay />
 

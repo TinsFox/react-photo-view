@@ -1,10 +1,10 @@
-import type React from 'react';
-import { Children, cloneElement, useContext, useEffect, useRef } from 'react';
-import useInitial from './hooks/useInitial';
-import useMethods from './hooks/useMethods';
-import type { PhotoContextType } from './photo-context';
-import PhotoContext from './photo-context';
-import type { PhotoRenderParams } from './types';
+import type React from "react";
+import { Children, cloneElement, useContext, useEffect, useRef } from "react";
+import useInitial from "./hooks/useInitial";
+import useMethods from "./hooks/useMethods";
+import type { PhotoContextType } from "./photo-context";
+import PhotoContext from "./photo-context";
+import type { PhotoRenderParams } from "../types";
 
 export interface PhotoViewProps {
   /**
@@ -33,7 +33,14 @@ export interface PhotoViewProps {
   children?: React.ReactElement;
 }
 
-const PhotoView: React.FC<PhotoViewProps> = ({ src, render, overlay, width, height, children }) => {
+const PhotoView: React.FC<PhotoViewProps> = ({
+  src,
+  render,
+  overlay,
+  width,
+  height,
+  children,
+}) => {
   const photoContext = useContext<PhotoContextType>(PhotoContext);
   const key = useInitial(() => photoContext.nextId());
   const originRef = useRef<HTMLElement>(null);
@@ -59,7 +66,7 @@ const PhotoView: React.FC<PhotoViewProps> = ({ src, render, overlay, width, heig
     },
     click(e: React.MouseEvent) {
       photoContext.show(key);
-      invokeChildrenFn('onClick', e);
+      invokeChildrenFn("onClick", e);
     },
   });
 
@@ -76,7 +83,9 @@ const PhotoView: React.FC<PhotoViewProps> = ({ src, render, overlay, width, heig
   }, [src]);
 
   if (children) {
-    return Children.only(cloneElement(children, { onClick: fn.click, ref: originRef }));
+    return Children.only(
+      cloneElement(children, { onClick: fn.click, ref: originRef })
+    );
   }
   return null;
 };

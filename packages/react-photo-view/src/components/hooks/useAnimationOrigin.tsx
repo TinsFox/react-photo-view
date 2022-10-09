@@ -1,8 +1,8 @@
-import type { Dispatch, MutableRefObject, SetStateAction } from 'react';
-import { useState, useEffect, useRef } from 'react';
-import type { EasingMode, OriginRectType } from '../types';
-import useMethods from './useMethods';
-import { maxWaitAnimationTime } from '../variables';
+import type { Dispatch, MutableRefObject, SetStateAction } from "react";
+import { useState, useEffect, useRef } from "react";
+import type { EasingMode, OriginRectType } from "../../types";
+import useMethods from "./useMethods";
+import { maxWaitAnimationTime } from "../../variables";
 
 const initialRect: OriginRectType = {
   T: 0,
@@ -18,11 +18,11 @@ export default function useAnimationOrigin(
   originRef: MutableRefObject<HTMLElement | null> | undefined,
   loaded: boolean,
   speed: number,
-  updateEasing: (pause: boolean) => void,
+  updateEasing: (pause: boolean) => void
 ): [
   // 动画状态
   easingMode: EasingMode,
-  originRect: OriginRectType,
+  originRect: OriginRectType
 ] {
   const [originRect, updateOriginRect] = useState(initialRect);
   // 动画状态
@@ -76,20 +76,26 @@ export default function useAnimationOrigin(
  */
 function handleUpdateOrigin(
   originRef: MutableRefObject<HTMLElement | null> | undefined,
-  updateOriginRect: Dispatch<SetStateAction<typeof initialRect>>,
+  updateOriginRect: Dispatch<SetStateAction<typeof initialRect>>
 ) {
   const element = originRef && originRef.current;
 
   if (element && element.nodeType === 1) {
     // 获取触发时节点位置
     const { top, left, width, height } = element.getBoundingClientRect();
-    const isImage = element.tagName === 'IMG';
+    const isImage = element.tagName === "IMG";
     updateOriginRect({
       T: top,
       L: left,
       W: width,
       H: height,
-      FIT: isImage ? (getComputedStyle(element).objectFit as 'contain' | 'cover' | 'fill' | undefined) : undefined,
+      FIT: isImage
+        ? (getComputedStyle(element).objectFit as
+            | "contain"
+            | "cover"
+            | "fill"
+            | undefined)
+        : undefined,
     });
   }
 }

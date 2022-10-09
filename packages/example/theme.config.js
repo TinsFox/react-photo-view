@@ -9,11 +9,12 @@ const Vercel = ({ height = 20 }) => (
 
 export default {
   project: {
-    link: 'https://github.com/TinsFox/react-photo-view',
-    icom: 'https://avatars.githubusercontent.com/u/33956589?s=40&v=4',
+    link: "https://github.com/TinsFox/react-photo-view",
+    icom: "https://avatars.githubusercontent.com/u/33956589?s=40&v=4",
   },
-  docsRepositoryBase: 'https://github.com/TinsFox/react-photo-view/tree/master/example', // base URL for the docs repository
-  titleSuffix: ' – react-photo-view',
+  docsRepositoryBase:
+    "https://github.com/TinsFox/react-photo-view/tree/master/example", // base URL for the docs repository
+  titleSuffix: " – @acr/react-photo-view",
   search: true,
   unstable_flexsearch: true,
   floatTOC: true,
@@ -40,22 +41,28 @@ export default {
 
   footerEditLink: ({ locale }) => {
     switch (locale) {
-      case 'zh-CN':
-        return '在 GitHub 上编辑本页 →';
+      case "zh-CN":
+        return "在 GitHub 上编辑本页 →";
       default:
-        return 'Edit this page on GitHub →';
+        return "Edit this page on GitHub →";
     }
   },
-  logo: <span>react-photo-view</span>,
+  logo: <span>@acr/react-photo-view</span>,
   head: (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="description" content="react-photo-view: A beautiful photo preview component" />
-      <meta name="og:title" content="react-photo-view: A beautiful photo preview component" />
+      <meta
+        name="description"
+        content="@acr/react-photo-view: A beautiful photo preview component"
+      />
+      <meta
+        name="og:title"
+        content="@acr/react-photo-view: A beautiful photo preview component"
+      />
     </>
   ),
-  i18n: [
-    { locale: 'zh-CN', text: '简体中文' },
-    { locale: 'en-US', text: 'English' },
-  ],
+  // i18n: [
+  //   { locale: 'zh-CN', text: '简体中文' },
+  //   { locale: 'en-US', text: 'English' },
+  // ],
 };

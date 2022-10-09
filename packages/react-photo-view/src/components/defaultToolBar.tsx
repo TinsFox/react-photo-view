@@ -1,7 +1,7 @@
-import React from 'react';
-import ArrowRightLine from './Icon/arrow-right-line';
-import ArrowLeftLine from './Icon/arrow-left-line';
-import Close from './Icon/close';
+import React from "react";
+import ArrowRightLine from "./Icon/arrow-right-line";
+import ArrowLeftLine from "./Icon/arrow-left-line";
+import Close from "./Icon/close";
 
 export default function DefaultToolBar({ onClose }: any) {
   return (

@@ -1,6 +1,6 @@
-import { useReducer, useRef } from 'react';
-import type { ActiveAnimationType } from '../types';
-import useForkedVariable from './useForkedVariable';
+import { useReducer, useRef } from "react";
+import type { ActiveAnimationType } from "../../types";
+import useForkedVariable from "./useForkedVariable";
 
 /**
  * 动画关闭处理真实关闭状态
@@ -8,22 +8,29 @@ import useForkedVariable from './useForkedVariable';
  */
 export default function useAnimationVisible(
   visible: boolean | undefined,
-  afterClose?: () => void,
-): [realVisible: boolean | undefined, activeAnimation: ActiveAnimationType, onAnimationEnd: () => void] {
+  afterClose?: () => void
+): [
+  realVisible: boolean | undefined,
+  activeAnimation: ActiveAnimationType,
+  onAnimationEnd: () => void
+] {
   const [, handleRender] = useReducer((c) => !c, false);
 
   const activeAnimation = useRef<ActiveAnimationType>(0);
 
   // 可见状态分支
-  const [realVisible, modifyRealVisible] = useForkedVariable(visible, (modify) => {
-    // 可见状态：设置进入动画
-    if (visible) {
-      modify(visible);
-      activeAnimation.current = 1;
-    } else {
-      activeAnimation.current = 2;
+  const [realVisible, modifyRealVisible] = useForkedVariable(
+    visible,
+    (modify) => {
+      // 可见状态：设置进入动画
+      if (visible) {
+        modify(visible);
+        activeAnimation.current = 1;
+      } else {
+        activeAnimation.current = 2;
+      }
     }
-  });
+  );
 
   function onAnimationEnd() {
     // 动画结束后触发渲染

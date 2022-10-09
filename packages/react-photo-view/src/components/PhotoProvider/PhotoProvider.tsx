@@ -1,14 +1,18 @@
-import React, { useMemo, useRef } from 'react';
-import type { DataType, PhotoProviderBase } from './types';
-import useMethods from './hooks/useMethods';
-import useSetState from './hooks/useSetState';
-import PhotoContext from './photo-context';
-import PhotoSlider from './PhotoSlider';
+import React, { useMemo, useRef } from "react";
+import type { DataType, PhotoProviderBase } from "../../types";
+import useMethods from "../hooks/useMethods";
+import useSetState from "../hooks/useSetState";
+import PhotoContext from "../photo-context";
+import PhotoSlider from "../PhotoSlider/PhotoSlider";
 
 export interface PhotoProviderProps extends PhotoProviderBase {
   children: React.ReactNode;
   onIndexChange?: (index: number, state: PhotoProviderState) => void;
-  onVisibleChange?: (visible: boolean, index: number, state: PhotoProviderState) => void;
+  onVisibleChange?: (
+    visible: boolean,
+    index: number,
+    state: PhotoProviderState
+  ) => void;
 }
 
 type PhotoProviderState = {
@@ -23,7 +27,12 @@ const initialState: PhotoProviderState = {
   index: 0,
 };
 
-export default function PhotoProvider({ children, onIndexChange, onVisibleChange, ...restProps }: PhotoProviderProps) {
+export default function PhotoProvider({
+  children,
+  onIndexChange,
+  onVisibleChange,
+  ...restProps
+}: PhotoProviderProps) {
   const [state, updateState] = useSetState(initialState);
   const uniqueIdRef = useRef(0);
   const { images, visible, index } = state;

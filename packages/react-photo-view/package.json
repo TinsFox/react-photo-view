@@ -14,7 +14,7 @@
     "gallery",
     "carousel"
   ],
-  "repository": "https://github.com/MinJieLiu/react-photo-view.git",
+  "repository": "https://github.com/TinsFox/react-photo-view.git",
   "license": "Apache-2.0",
   "author": "MinJieLiu",
   "main": "./dist/react-photo-view.umd.js",
@@ -26,8 +26,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "vite build",
-    "dev": "tsc && vite build --watch",
+    "build": "vite build && tsc",
+    "dev": "vite build --watch",
+    "dev:types": "tsc --watch",
     "gentypes": "tsc",
     "prepublishOnly": "npm run build",
     "preinstall": "pnpm build && tsc"
