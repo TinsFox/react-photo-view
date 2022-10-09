@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
-
+import dts from 'rollup-plugin-dts';
 export default defineConfig({
   build: {
     lib: {

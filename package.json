@@ -6,15 +6,14 @@
   "license": "Apache-2.0",
   "author": "MinJieLiu",
   "scripts": {
-    "build": "pnpm -C ./packages/react-photo-view build && pnpm -C ./packages/example build",
+    "build": "pnpm -C ./packages/example build",
     "lint": "npm run lint:js && npm run lint:prettier",
     "lint-staged": "lint-staged",
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty packages/ --fix",
     "lint:prettier": "prettier --check \"**/*\" --end-of-line auto --write",
     "lint:style": "stylelint --fix \"**/*.less\" --syntax less",
     "prepare": "husky install",
-    "prestart": "yarn build",
-    "start": "pnpm -C ./packages/example start -p 9001"
+    "start": "pnpm -C ./packages/example start"
   },
   "lint-staged": {
     "**/*.less": "stylelint --syntax less",
@@ -29,5 +28,8 @@
     "lint-staged": "^12.3.3",
     "prettier": "^2.5.1",
     "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "eslint-plugin-prettier": "^4.2.1"
   }
 }

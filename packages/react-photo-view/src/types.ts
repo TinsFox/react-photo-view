@@ -1,8 +1,6 @@
 import type React from 'react';
 
-/**
- * 资源数据类型
- */
+/**资源数据类型*/
 export interface DataType {
   /**
    * 唯一标识

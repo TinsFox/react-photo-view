@@ -6,7 +6,7 @@ import type { DataType } from '../types';
  */
 export default function useAdjacentImages(images: DataType[], index: number, loop: boolean) {
   return useMemo(() => {
-    const imageLength = images.length;
+    const imageLength = images?.length;
     if (loop) {
       const connected = images.concat(images).concat(images);
       return connected.slice(imageLength + index - 1, imageLength + index + 2);

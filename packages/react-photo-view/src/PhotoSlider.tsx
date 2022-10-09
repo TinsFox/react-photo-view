@@ -132,7 +132,7 @@ export default function PhotoSlider(props: IPhotoSliderProps) {
   const virtualIndexRef = useRef(index);
 
   // 当前图片
-  const imageLength = images.length;
+  const imageLength = images?.length;
   const currentImage: DataType | undefined = images[index];
 
   // 是否开启

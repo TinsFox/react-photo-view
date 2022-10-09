@@ -9,6 +9,7 @@
   "dependencies": {
     "@acr/react-photo-view": "workspace:1.2.2",
     "autoprefixer": "^10.4.8",
+    "eslint-config-ali": "^14.0.2",
     "mac-scrollbar": "^0.10.3",
     "next": "12.3.1",
     "nextra": "^1.1.0",
