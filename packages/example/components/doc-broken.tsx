@@ -1,5 +1,5 @@
 import React from 'react';
-import { PhotoProvider, PhotoView } from 'react-photo-view';
+import { PhotoProvider, PhotoView } from '@acr/react-photo-view';
 import { Button, ImageList } from './doc-components';
 import { EosIconsBubbleLoading } from '../icons/EosIconsBubbleLoading';
 import defaultPhoto from '../images/default-photo.svg';

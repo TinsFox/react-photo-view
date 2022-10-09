@@ -13,10 +13,10 @@
 
 ## Quick start
 
-- [Getting Started](https://react-photo-view.vercel.app)
-- [Basic usage](https://react-photo-view.vercel.app/docs/getting-started)
-- [API](https://react-photo-view.vercel.app/docs/api)
-- [Change log](https://react-photo-view.vercel.app/docs/change-log)
+- [Getting Started](https://react-photo-view.tinsfox.com/)
+- [Basic usage](https://react-photo-view.tinsfox.com//docs/getting-started)
+- [API](https://react-photo-view.tinsfox.com//docs/api)
+- [Change log](https://react-photo-view.tinsfox.com//docs/change-log)
 
 ## features
 
@@ -39,7 +39,7 @@ yarn add react-photo-view
 
 ```js
 import { PhotoProvider, PhotoView } from 'react-photo-view';
-import 'react-photo-view/dist/react-photo-view.css';
+import 'react-photo-view/dist/style.css';
 
 function App() {
   return (

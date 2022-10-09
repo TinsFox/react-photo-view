@@ -1,11 +1,14 @@
 module.exports = {
-  extends: [require.resolve('@umijs/fabric/dist/eslint')],
+  extends: ['plugin:@next/next/recommended', 'eslint-config-ali/typescript/react', 'plugin:prettier/recommended'],
+  plugins: ['prettier'],
   rules: {
-    'arrow-body-style': 0,
-    'jsx-a11y/label-has-for': 0,
-    'no-confusing-arrow': 0,
-    'no-nested-ternary': 0,
-    'no-console': 2,
-    'react/no-this-in-sfc': 0,
+    'import/no-cycle': 'off',
+    'react/prop-types': 0,
+    'no-unused-vars': 'off',
+    'prettier/prettier': 'error',
+    '@typescript-eslint/require-ts-comment-description': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    'no-console': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
   },
 };

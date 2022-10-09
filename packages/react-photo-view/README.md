@@ -9,10 +9,10 @@
 
 ## Quick start
 
-- [Documentation](https://react-photo-view.vercel.app)
-- [Getting started](https://react-photo-view.vercel.app/docs/getting-started)
-- [API](https://react-photo-view.vercel.app/docs/api)
-- [Change log](https://react-photo-view.vercel.app/docs/change-log)
+- [Documentation](https://react-photo-view.tinsfox.com/)
+- [Getting started](https://react-photo-view.tinsfox.com//docs/getting-started)
+- [API](https://react-photo-view.tinsfox.com//docs/api)
+- [Change log](https://react-photo-view.tinsfox.com//docs/change-log)
 
 ## License
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { PhotoSlider } from 'react-photo-view';
+import { PhotoSlider } from '@acr/react-photo-view';
 import { Button, ImageList, Overlay, photoImages } from './doc-components';
 
 export default function DocControlled() {

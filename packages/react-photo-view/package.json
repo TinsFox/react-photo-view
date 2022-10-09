@@ -1,15 +1,7 @@
 {
-  "name": "react-photo-view",
+  "name": "@acr/react-photo-view",
   "version": "1.2.2",
   "description": "An exquisite React photo preview component",
-  "author": "MinJieLiu",
-  "license": "Apache-2.0",
-  "repository": "https://github.com/MinJieLiu/react-photo-view.git",
-  "source": "src/index.ts",
-  "types": "./dist/index.d.ts",
-  "main": "./dist/react-photo-view.umd.js",
-  "module": "./dist/react-photo-view.es.js",
-  "typings": "./dist/index.d.ts",
   "keywords": [
     "react",
     "react component",
@@ -22,14 +14,30 @@
     "gallery",
     "carousel"
   ],
+  "repository": "https://github.com/MinJieLiu/react-photo-view.git",
+  "license": "Apache-2.0",
+  "author": "MinJieLiu",
+  "main": "./dist/react-photo-view.umd.js",
+  "module": "./dist/react-photo-view.es.js",
+  "source": "src/index.ts",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "build": "rimraf ./dist && tsc && vite build",
     "dev": "rimraf ./dist && tsc && vite build --watch",
-    "prepublishOnly": "npm run build",
-    "build": "rimraf ./dist && tsc && vite build"
+    "gentypes": "tsc",
+    "preinstall": "npm run build && tsc",
+    "prepublishOnly": "npm run build"
   },
-  "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+  "dependencies": {
+    "@rollup/plugin-typescript": "^8.5.0",
+    "@vitejs/plugin-react": "^2.1.0",
+    "tslib": "^2.4.0",
+    "typescript": "^4.5.5",
+    "vite": "^3.1.4"
   },
   "devDependencies": {
     "@types/react": "^17.0.39",
@@ -39,14 +47,11 @@
     "react-dom": "^17.0.2",
     "rimraf": "^3.0.2"
   },
-  "files": [
-    "dist"
-  ],
-  "dependencies": {
-    "@rollup/plugin-typescript": "^8.5.0",
-    "@vitejs/plugin-react": "^2.1.0",
-    "tslib": "^2.4.0",
-    "typescript": "^4.5.5",
-    "vite": "^3.1.4"
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "engines": {
+    "node": ">= 16"
   }
 }

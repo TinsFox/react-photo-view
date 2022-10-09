@@ -1,5 +1,5 @@
 import React from 'react';
-import { PhotoProvider, PhotoView } from 'react-photo-view';
+import { PhotoProvider, PhotoView } from '@acr/react-photo-view';
 import { ImageList } from './doc-components';
 import photo2 from '../images/2.jpg';
 import photo3 from '../images/3.jpg';

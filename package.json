@@ -2,19 +2,19 @@
   "name": "root",
   "private": true,
   "description": "An exquisite React photo preview component",
-  "author": "MinJieLiu",
-  "license": "Apache-2.0",
   "repository": "https://github.com/MinJieLiu/react-photo-view.git",
+  "license": "Apache-2.0",
+  "author": "MinJieLiu",
   "scripts": {
     "build": "pnpm -C ./packages/react-photo-view build && pnpm -C ./packages/example build",
-    "prestart": "yarn build",
-    "start": "pnpm -C ./packages/example start -p 9001",
-    "prepare": "husky install",
     "lint": "npm run lint:js && npm run lint:prettier",
+    "lint-staged": "lint-staged",
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty packages/ --fix",
     "lint:prettier": "prettier --check \"**/*\" --end-of-line auto --write",
     "lint:style": "stylelint --fix \"**/*.less\" --syntax less",
-    "lint-staged": "lint-staged"
+    "prepare": "husky install",
+    "prestart": "yarn build",
+    "start": "pnpm -C ./packages/example start -p 9001"
   },
   "lint-staged": {
     "**/*.less": "stylelint --syntax less",
@@ -24,16 +24,10 @@
     ]
   },
   "devDependencies": {
-    "@types/react": "^17.0.39",
-    "@types/react-dom": "^17.0.11",
-    "@umijs/fabric": "^2.10.1",
+    "concurrently": "^7.4.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.3",
-    "next": "^12.0.8",
     "prettier": "^2.5.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "typescript": "^4.5.5",
-    "concurrently": "^7.4.0"
+    "typescript": "^4.5.5"
   }
 }

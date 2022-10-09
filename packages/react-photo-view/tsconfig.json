@@ -3,7 +3,12 @@
     "rootDir": "src",
     "declarationDir": "dist",
     "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "outDir": "dist",
     "allowJs": false,
     "skipLibCheck": true,
     "strictNullChecks": true,
@@ -24,6 +29,11 @@
     "noEmitOnError": true,
     "jsx": "react"
   },
-  "include": ["src", "typings.d.ts"],
-  "exclude": ["__tests__"]
+  "include": [
+    "src",
+    "typings.d.ts"
+  ],
+  "exclude": [
+    "__tests__"
+  ]
 }

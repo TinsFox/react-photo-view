@@ -5,9 +5,7 @@ title: 一款超精致的 React 图片预览组件
 import Callout from 'nextra-theme-docs/callout';
 import Bleed from 'nextra-theme-docs/bleed';
 import Features from '../components/features';
-
 import Index from '../components/doc-index';
-import qrcode from '../images/qrcode.jpg';
 
 <h1 className="text-center font-bold md:text-5xl mt-8">react-photo-view</h1>
 
@@ -17,8 +15,16 @@ import qrcode from '../images/qrcode.jpg';
 
 `react-photo-view` 拥有无与伦比的预览交互体验：从打开图像开始，每一帧的动画、细节和交互都经过了精心设计与反复调试，媲美原生图片预览的效果。
 
+<Callout emoji="🤪">
+  <span>本仓库(@acr/react-photo-view)Fork自 👉 </span>
+  <a className="inline-block" href="https://github.com/MinJieLiu/react-photo-view" target="_blank">
+    MinJieLiu/react-photo-view
+  </a>
+</Callout>
+
 <div className="mt-16 mb-20 text-center">
-  [示例](/docs/getting-started) · [API](/docs/api) · [GitHub 仓库](https://github.com/MinJieLiu/react-photo-view.git)
+  [快速上手](/docs/getting-started) · [API](/docs/api) · [GitHub 仓库](https://github.com/TinsFox/react-photo-view.git)
+  · [原仓库](https://github.com/MinJieLiu/react-photo-view)
 </div>
 
 <Index />
@@ -26,8 +32,8 @@ import qrcode from '../images/qrcode.jpg';
 ## 概览
 
 ```jsx
-import { PhotoProvider, PhotoView } from 'react-photo-view';
-import 'react-photo-view/dist/react-photo-view.css';
+import { PhotoProvider, PhotoView } from '@acr/react-photo-view';
+import '@acr/react-photo-view/dist/style.css';
 
 export default function App() {
   return (
@@ -40,7 +46,7 @@ export default function App() {
 }
 ```
 
-该示例中，`react-photo-view` 提供了两个组件： `PhotoProvider` 和 `PhotoView`。以 `PhotoProvider`为界限，里面所有的 `PhotoView` 图片会按照运行顺序提取为一组图片预览画廊。当某个 `<img />` 被点击，则会定位到指定的图片并打开预览。
+该示例中，`@acr/react-photo-view` 提供了两个组件： `PhotoProvider` 和 `PhotoView`。以 `PhotoProvider`为界限，里面所有的 `PhotoView` 图片会按照运行顺序提取为一组图片预览画廊。当某个 `<img />` 被点击，则会定位到指定的图片并打开预览。
 
 ## 特性
 
@@ -58,32 +64,16 @@ export default function App() {
 ## 关于
 
 <p className="flex flex-wrap">
-  <img
-    alt="stars"
-    src="https://badgen.net/github/stars/MinJieLiu/react-photo-view"
-    className="mr-2 mb-2"
-  />
-  <img
-    alt="version"
-    src="https://img.shields.io/npm/v/react-photo-view.svg?style=flat-square"
-    className="mr-2 mb-2"
-  />
+  <img alt="stars" src="https://badgen.net/github/stars/MinJieLiu/react-photo-view" className="mr-2 mb-2" />
+  <img alt="version" src="https://img.shields.io/npm/v/react-photo-view.svg?style=flat-square" className="mr-2 mb-2" />
   <img
     alt="downloads"
     src="http://img.shields.io/npm/dm/react-photo-view.svg?style=flat-square"
     className="mr-2 mb-2"
   />
   <img alt="license" src="https://badgen.net/npm/license/react-photo-view" className="mr-2 mb-2" />
-  <img
-    alt="min"
-    src="https://badgen.net/bundlephobia/min/react-photo-view?label=minified"
-    className="mr-2 mb-2"
-  />
-  <img
-    alt="gzip"
-    src="https://badgen.net/bundlephobia/minzip/react-photo-view?label=gzip"
-    className="mr-2 mb-2"
-  />
+  <img alt="min" src="https://badgen.net/bundlephobia/min/react-photo-view?label=minified" className="mr-2 mb-2" />
+  <img alt="gzip" src="https://badgen.net/bundlephobia/minzip/react-photo-view?label=gzip" className="mr-2 mb-2" />
 </p>
 
 `react-photo-view` 由 [MinJieLiu](https://github.com/MinJieLiu) 创建
@@ -95,15 +85,6 @@ export default function App() {
   </a>
   <span> 感谢支持！</span>
 </Callout>
-
-- [稀土掘金](https://juejin.cn/user/289926798650509)
-- [知乎](https://www.zhihu.com/people/liumingyi)
-- [GitHub](https://github.com/MinJieLiu)
-- [Gitee](https://gitee.com/MinJieLiu)
-
-加我好友，拉你进前端交流进阶大群（备注：加群）
-
-<img alt="code" src={qrcode.src} className="block w-36" />
 
 ## License
 

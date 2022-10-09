@@ -8,8 +8,11 @@ const Vercel = ({ height = 20 }) => (
 );
 
 export default {
-  projectLink: 'https://github.com/MinJieLiu/react-photo-view', // GitHub link in the navbar
-  docsRepositoryBase: 'https://github.com/MinJieLiu/react-photo-view/tree/master/example', // base URL for the docs repository
+  project: {
+    link: 'https://github.com/TinsFox/react-photo-view',
+    icom: 'https://avatars.githubusercontent.com/u/33956589?s=40&v=4',
+  },
+  docsRepositoryBase: 'https://github.com/TinsFox/react-photo-view/tree/master/example', // base URL for the docs repository
   titleSuffix: ' – react-photo-view',
   search: true,
   unstable_flexsearch: true,
@@ -25,7 +28,7 @@ export default {
         href="https://vercel.com/?utm_source=swr"
         target="_blank"
         rel="noopener"
-        className="inline-flex items-center no-underline text-current font-semibold"
+        className="inline-flex items-center font-semibold text-current no-underline"
       >
         <span className="mr-1">Powered by</span>
         <span>

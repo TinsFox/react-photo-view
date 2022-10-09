@@ -1,4 +1,5 @@
 # react-photo-view
+> 本仓库 Fork 自 [react-photo-view](https://github.com/MinJieLiu/react-photo-view)
 
 **中文** | [English](./README.md)
 
@@ -13,10 +14,10 @@
 
 ## 快速开始
 
-- [文档入口](https://react-photo-view.vercel.app)
-- [基本示例](https://react-photo-view.vercel.app/docs/getting-started)
-- [API](https://react-photo-view.vercel.app/docs/api)
-- [更新日志](https://react-photo-view.vercel.app/docs/change-log)
+- [文档入口](https://react-photo-view.tinsfox.com/)
+- [基本示例](https://react-photo-view.tinsfox.com//docs/getting-started)
+- [API](https://react-photo-view.tinsfox.com//docs/api)
+- [更新日志](https://react-photo-view.tinsfox.com//docs/change-log)
 
 ## 特性
 
@@ -39,7 +40,7 @@ yarn add react-photo-view
 
 ```js
 import { PhotoProvider, PhotoView } from 'react-photo-view';
-import 'react-photo-view/dist/react-photo-view.css';
+import 'react-photo-view/dist/style.css';
 
 function App() {
   return (
